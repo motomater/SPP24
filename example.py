@@ -23,10 +23,6 @@ class Car(object):
             yield self.env.timeout(trip_duration)
 
 
-    def charge(self, duration):
-        yield self.env.timeout(duration)
-
-
 class Bycicle(object):
     def __init__(self, env):
         self.env = env
@@ -37,3 +33,15 @@ class Bycicle(object):
             print('Start driving at %d' % self.env.now)
             trip_duration = 2
             yield self.env.timeout(trip_duration)
+
+class BigCar(object):
+    def __init__(self, env):
+        self.env = env
+        self.action = env.process(self.run())
+
+    def run(self):
+        while True:
+            print('Start driving at %d' % self.env.now)
+            trip_duration = 2
+            yield self.env.timeout(trip_duration)
+
